@@ -1,4 +1,5 @@
 
+
 import re
 from  sigirexperiments import processhelper
 from sigirexperiments import  models
@@ -193,12 +194,15 @@ def synonymsForCurrentAttr(currentAttr,data):
     Mp = []
     values = models.sigirCoraAttrValue.objects.filter(attr_id=currentAttr.id)
     dict = {}
+    synsall = []
     for v in values:
         syns = models.sigirCoraValueSynonym.objects.filter(value=v)
+        synsall.extend([L.synonym for L in syns])
         for L in syns:
             if v.value != L.synonym:
                 print(tuple([v.value, L.synonym]))
                 Mp.append(tuple([v.value, L.synonym]))
+
     for v in values:
         syns = models.sigirCoraValueSynonym.objects.filter(value=v)
         synslist = [L.synonym for L in syns]
@@ -219,7 +223,7 @@ def synonymsForCurrentAttr(currentAttr,data):
         match = []
         for p in ps:
             match.extend(findmatchs(p=p, data=data))
-        matches = list(set(match).difference(set(synslist)))
+        matches = list(set(match).difference(set(synsall)))
         if len(matches) > 0:
             dict[v.value]=list(set(matches))
     return dict
@@ -239,4 +243,6 @@ def synsUsingWordNet(value):
         temp = ''.join(restr)
         wnPatternStr.append(temp)
     return wnPatternStr
+
+
 
