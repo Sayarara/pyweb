@@ -86,8 +86,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cluster',
         'USER':'root',
-        'PASSWORD':'',
-        'HOST':'localhost',
+        'PASSWORD':'ubuntu',
+        'HOST':'10.214.224.234',
         'PORT':'3306',
         'OPTIONS':{
             'init_command':"SET sql_mode='STRICT_TRANS_TABLES'",
