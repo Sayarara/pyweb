@@ -1,170 +1,163 @@
-
 <!DOCTYPE html>
 
-<html lang="en-us" >
+<html lang="en-us">
 <head>
-<title>Welcome | DEXTRA test system</title>
-<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
-<link rel="stylesheet" type="text/css" href="/static/admin/css/dashboard.css">
-
+    <title>Welcome | DEXTRA test system</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/dashboard.css">
 
 
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
-    
 
-<meta name="robots" content="NONE,NOARCHIVE">
+
+    <meta name="robots" content="NONE,NOARCHIVE">
 </head>
 
 
 <body class=" dashboard"
-  data-admin-utc-offset="0">
+      data-admin-utc-offset="0">
 
 <!-- Container -->
 <div id="container">
 
-    
+
     <!-- Header -->
     <div id="header">
         <div id="branding">
-        
-<h1 id="site-name"><a href="/welcome/">Welcome</a></h1>
+
+            <h1 id="site-name"><a href="/welcome/">Welcome</a></h1>
 
         </div>
-        
-        
+
+
         <div id="user-tools">
-             {% csrf_token %}
-                Welcome,
+            {% csrf_token %}
+            Welcome,
             {% if request.session.username %}
                 <strong>{{ request.session.username }}.</strong>
             {% else %}
                 <strong>Please login again.</strong>
             {% endif %}
-                <a href="/password_change/">Change password</a> /
-                
-                <a href="/logout/">Log out</a>
-            
+            <a href="/password_change/">Change password</a> /
+
+            <a href="/logout/">Log out</a>
+
         </div>
-        
-        
-        
+
+
     </div>
     <!-- END Header -->
-    
-    
 
-    
-        
-    
 
     <!-- Content -->
     <div id="content" class="colMS">
 
-        
+
         <h1>Please choose the test system</h1>
-        
-<div id="content-main">
+
+        <div id="content-main">
 
 
+            <div class="app-auth module">
+                <table>
+                    <caption>
+                        <a href="//" class="section" title="Mn">Baseline Systems</a>
+                    </caption>
+
+                    <tr class="model-group">
+                        <th scope="row"><a href="/dedupe/activelabel">dedupe(We use dedupe python library)</a></th>
+                        <td><a href="/dedupe/activelabel" class="addlink">participate</a></td>
+                    </tr>
+
+                    <tr class="model-group">
+                        <th scope="row"><a href="/alloy/">alloy(We just implement the cast and gather pattern described
+                            in Alloy)</a></th>
+                        <td><a href="/alloy/" class="addlink">participate</a></td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="app-auth module">
+                <table>
+                    <caption>
+                        <a href="//" class="section" title="Mn">Our System</a>
+                    </caption>
+
+                    <tr class="model-group">
+                        <th scope="row"><a href="/dextra/attrmanage">DEXTRA(A Attributed Entity Extraction Solution)</a>
+                        </th>
+                        <td><a href="/dextra/attrmanage" class="addlink">participate</a></td>
+                    </tr>
+                    <tr class="model-group">
+                        <th scope="row"><a href="/sigirexp/exploration">EXACT(Demo Solution)</a></th>
+                        <td><a href="/sigirexp/exploration" class="addlink">participate</a></td>
+                    </tr>
+                </table>
+            </div>
 
 
-    
-        <div class="app-auth module">
-        <table>
-        <caption>
-            <a href="//" class="section" title="Mn">Baseline Systems</a>
-        </caption>
-        
-            <tr class="model-group">
-                <th scope="row"><a href="/dedupe/activelabel">dedupe(We use dedupe python library)</a></th>
-                 <td><a href="/dedupe/activelabel" class="addlink">participate</a></td>
-            </tr>
-        
-            <tr class="model-group">
-                <th scope="row"><a href="/alloy/">alloy(We just implement the cast and gather pattern described in Alloy)</a></th>
-                 <td><a href="/alloy/" class="addlink">participate</a></td>
-            </tr>
-        
-        </table>
         </div>
 
-        <div class="app-auth module">
-        <table>
-        <caption>
-            <a href="//" class="section" title="Mn">Our System</a>
-        </caption>
 
-            <tr class="model-group">
-                <th scope="row"><a href="/dextra/attrmanage">DEXTRA(A Attributed Entity Extraction Solution)</a></th>
-                    <td><a href="/dextra/attrmanage" class="addlink">participate</a></td>
-            </tr>
-        </table>
+        <div id="content-related">
+            <div class="module" id="recent-actions-module">
+                <h2>My Profiles</h2>
+                {% csrf_token %}
+                <h3>My Hobby</h3>
+                <p>{{ data.hobby }}</p>
+
+                <h3>My Domain</h3>
+                <p>{{ data.domain }}</p>
+                <h3>My Role</h3>
+                <p>{{ data.role }}</p>
+                <h2>Recent actions</h2>
+                <h3>My actions</h3>
+                <p>None available</p>
+            </div>
         </div>
-    
 
-</div>
-
-        
-<div id="content-related">
-    <div class="module" id="recent-actions-module">
-        <h2>My Profiles</h2>
-        {% csrf_token %}
-        <h3>My Hobby</h3> <p>{{ data.hobby }}</p>
-
-        <h3>My Domain</h3>
-            <p>{{ data.domain }}</p>
-        <h3>My Role</h3>
-            <p>{{ data.role }}</p>
-        <h2>Recent actions</h2>
-        <h3>My actions</h3>
-            <p>None available</p>
-    </div>
-</div>
-
-         <h1>Please choose one of the following ER tasks</h1>
+        <h1>Please choose one of the following ER tasks</h1>
 
         <fieldset class="module aligned ">
 
 
-        <div class="form-row field-permissions">
+            <div class="form-row field-permissions">
 
 
                 <div>
 
 
+                    <div class="related-widget-wrapper">
+                        <select name="contents" id="id_contents" Single class="selectfilter" data-field-name="contents"
+                                data-is-stacked="0">
+                            <option value="1"> cora | Academic | 1295 Rows</option>
+
+                            <option value="2"> Abt-Buy | Electronic Product | 2152 Rows</option>
+
+                            <option value="3"> cddb | Music | 9763 Rows</option>
+
+                            <option value="4"> dblp-acm | Academic | 4910 Rows</option>
+
+                            <option value="5"> dblp-scholar | Academic | 63869 Rows</option>
+
+                            <option value="6"> movies | Movie | 50797 Rows</option>
+
+                            <option value="7"> quora | Kaggle2017 | 537933 Rows</option>
+                        </select>
 
 
-                            <div class="related-widget-wrapper">
-    <select name="contents" id="id_contents" Single class="selectfilter" data-field-name="contents" data-is-stacked="0">
-  <option value="1"> cora | Academic | 1295 Rows</option>
-
-  <option value="2"> Abt-Buy | Electronic Product | 2152 Rows</option>
-
-  <option value="3"> cddb | Music | 9763 Rows</option>
-
-  <option value="4"> dblp-acm | Academic | 4910 Rows</option>
-
- <option value="5"> dblp-scholar | Academic | 63869 Rows</option>
-
-        <option value="6"> movies | Movie | 50797 Rows</option>
-
-        <option value="7"> quora | Kaggle2017 | 537933 Rows</option>
-</select>
+                    </div>
 
 
-
-</div>
-
-
-
-                        <div class="help">We suggest the task that meets your hobby\domain\role will be better.</div>
+                    <div class="help">We suggest the task that meets your hobby\domain\role will be better.</div>
 
                 </div>
 
-        </div>
+            </div>
 
-</fieldset>
+        </fieldset>
 
         <br class="clear">
     </div>
