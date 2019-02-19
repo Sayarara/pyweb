@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+<style type="text/css">
+    .summaryText {
+color: steelblue;
+}
+    .detailtext {
+        color: cadetblue;
+    }
+    </style>
+<form>
+    {% csrf_token %}
+    <span>bbb
+    </span>
+    name: <input type="text", id="id_username">
+
+    password <input type="password" id="id_password">
+
+    <input type="button" value="sumbit" id="result">
+
+</form>
+<script>
+    $("#result").click(function () {
+        $.ajaxSetup({
+            data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
+        });
+        $.ajax({
+            url:"/app01/ajax_submit/",
+            type:'POST',
+            tradition:true,
+            data:{
+                "username":$("#id_username").val(),
+                "password":$("#id_password").val(),
+            },
+            success:function (data) {
+                var dataObj = JSON.parse(data);
+                $("span").text(dataObj["msg"])
+
+            }
+        })
+    })
+</script>
+
+
+dd<details><summary><span class="summaryText">颜色</span></summary><p class = "detailtext">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p></details>cc
+
+
+
+</body>
+</html>

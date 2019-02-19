@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+
+<html lang="en-us" >
+<head>
+<title>attribute manage | DEXTRA</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectBox.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectFilter2.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-auth model-group change-form"
+  data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name"><a href="/dextra/">DEXTRA</a></h1>
+
+        </div>
+        
+        
+                <div id="user-tools">
+             {% csrf_token %}
+                Welcome,
+            {% if request.session.username %}
+                <strong>{{ request.session.username }}.</strong>
+            {% else %}
+                <strong>Please login again.</strong>
+            {% endif %}
+                <a href="/password_change/">Change password</a> /
+
+                <a href="/logout/">Log out</a>
+
+        </div>
+        
+        
+        
+    </div>
+    <!-- END Header -->
+    
+<div class="breadcrumbs">
+<a href="/welcome/">Home</a>
+&rsaquo; <a href="/dextra/">Dextra</a>
+&rsaquo; <a href="/dextra/attrmanage/">Attribute Management</a>
+&rsaquo; Attribute ADD/Delete/Change
+</div>
+
+    
+
+    
+        
+    
+
+    <!-- Content -->
+    <div id="content" class="colM">
+        
+        <h1>Attribute Management</h1>
+        <div id="content-main">
+
+
+
+
+
+
+
+<div id="toolbar"><form id="changelist-search" method="get">
+<div><!-- DIV needed for valid HTML -->
+<label for="searchbar"><img src="/static/admin/img/search.svg" alt="Search"></label>
+<input type="text" size="40" name="q" value="" id="searchbar" autofocus>
+<input type="submit" value="Search">
+
+
+</div>
+</form></div>
+
+
+                    <div class="app-auth module">
+
+
+
+
+
+            <div class="results">
+<table id="result_list">
+
+<thead>
+
+<tr>
+
+<th scope="col"  class="action-checkbox-column">
+
+   <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
+   <div class="clear"></div>
+</th>
+<th >Attribute Name</th>
+    <th >Attribute Scope</th>
+<th >Change</th>
+
+<th >Delete</th>
+<th >Forbidden</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+
+<tr class="row1"><td class="action-checkbox"><input type="checkbox" name="_selected_action" value="5" class="action-select"></td><th class="field-username"><a href="/admin/auth/user/5/change/">aa</a></th><td class="field-email">&nbsp;</td><td><a href="/admin/auth/user/" class="changelink">Change</a></td><td><a href="/admin/auth/user/add/" class="deletelink">Delete</a></td><td><a href="/admin/auth/group/" class="viewlink">Forbidden</a></td></tr>
+
+
+<tr class="row2"><td class="action-checkbox"><input type="checkbox" name="_selected_action" value="2" class="action-select"></td><th class="field-username"><a href="/admin/auth/user/2/change/">aaa</a></th><td class="field-email">&nbsp;</td><td><a href="/admin/auth/user/" class="changelink">Change</a></td><td><a href="/admin/auth/user/add/" class="deletelink">Delete</a></td><td><a href="/admin/auth/group/" class="viewlink">Forbidden</a></td></tr>
+
+
+<tr class="row1"><td class="action-checkbox"><input type="checkbox" name="_selected_action" value="1" class="action-select"></td><th class="field-username"><a href="/admin/auth/user/1/change/">admin</a></th><td class="field-email">zjjxfenglei@163.com</td><td><a href="/admin/auth/user/" class="changelink">Change</a></td><td><a href="/admin/auth/user/add/" class="deletelink">Delete</a></td><td><a href="/admin/auth/group/" class="viewlink">Forbidden</a></td></tr>
+
+</tbody>
+</table>
+</div>
+
+
+
+
+
+
+        </div>
+
+
+        
+
+    </div>
+
+        <div id="content-related">
+    <div class="module" id="recent-actions-module">
+        <h2>Recent actions</h2>
+        <h3>My actions</h3>
+
+
+
+            <ul class="actionlist">
+
+            <li class="addlink">
+
+                    <a href="/admin/auth/user/8/change/">zky</a>
+
+                <br>
+
+                    <span class="mini quiet">User</span>
+
+            </li>
+
+            </ul>
+
+    </div>
+            <br class="clear">
+</div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>

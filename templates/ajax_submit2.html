@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<input type="button" onclick="AjaxSubmit_set();" value="提交集合">
+
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+{% csrf_token %}
+<script>
+
+
+        function AjaxSubmit_set(){
+        var data_list = [
+            {'name':'chenchao','age':18},
+            {'name':'lisi','age':19},
+            {'name':'wangwu','age':13}
+
+        ];
+        $.ajaxSetup({
+            data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
+        });
+
+        $.ajax({
+            url:"/app01/ajax_submit_set/",
+            type:'POST',
+            tradition:true,
+            data:{data:JSON.stringify(data_list)},
+            success: function (arg) {
+
+            }
+
+        });
+    }
+
+</script>
+
+</body>
+</html>

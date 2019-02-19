@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="en-us" >
+<head>
+<title>Add group | Django site admin</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectBox.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectFilter2.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-auth model-group change-form"
+  data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+
+        <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+<h1 id="site-name"><a href="/dextra/">DEXTRA</a></h1>
+
+        </div>
+
+
+                <div id="user-tools">
+             {% csrf_token %}
+                Welcome,
+            {% if request.session.username %}
+                <strong>{{ request.session.username }}.</strong>
+            {% else %}
+                <strong>Please login again.</strong>
+            {% endif %}
+                <a href="/password_change/">Change password</a> /
+
+                <a href="/logout/">Log out</a>
+
+        </div>
+
+
+
+    </div>
+    <!-- END Header -->
+
+<div class="breadcrumbs">
+<a href="/welcome/">Home</a>
+&rsaquo;&rsaquo;&rsaquo; <a href="attrmanage">Attribute Management</a>
+    &rsaquo;&rsaquo;&rsaquo; <a href="exploration">Attribute Exploration</a>
+&rsaquo;&rsaquo;&rsaquo; <a href="clusterrefine">Cluster Refinement</a>
+    &rsaquo;&rsaquo;&rsaquo; <a href="/exploration">Cluster View</a>
+</div>
+
+
+
+
+
+
+
+    <!-- Content -->
+    <div id="content" class="colM">
+
+        <h1>Cluster Refinement</h1>
+        <div id="content-main">
+
+
+
+<form action="" method="post" id="group_form" novalidate><input type="hidden" name="csrfmiddlewaretoken" value="wUGX2OL5MEWH79fpU2VVgvGgmuXzvXYDyVTNb2Zl6fkSOkzuCUqFwJ5FTHduw6SK">
+<div>
+    {% csrf_token %}
+
+
+
+
+
+
+
+  <fieldset class="module aligned ">
+
+
+
+        <div class="form-row field-name">
+
+
+                <div>
+
+
+                        <label class="required" for="id_name">Focused Entity:</label>
+
+                            <p id="id_name" class="vLargeTextField">{{ focus|safe }}</p>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-permissions">
+
+
+                <div>
+
+
+                        <label for="id_permissions">Similar Entities:</label>
+
+                            <div class="related-widget-wrapper">
+    <select name="Entities" id="id_permissions" multiple class="selectfilter" data-field-name="Entities" data-is-stacked="0">
+        {% for item in similar %}
+  <option value="{{ item.id }}"> {{ item.text|safe }}</option>
+ {% endfor %}
+</select>
+
+
+
+</div>
+
+
+
+                        <div class="help">Hold down "Control", or "Command" on a Mac, to select more than one.</div>
+
+                </div>
+
+        </div>
+
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="submit-row">
+
+<input type="submit" value="Save" class="default" name="submit">
+
+
+<input type="submit" value="Save and check another" name="submit">
+<input type="submit" value="Save and continue editing" name="submit">
+
+
+</div>
+
+
+
+    <script type="text/javascript"
+            id="django-admin-form-add-constants"
+            src="/static/admin/js/change_form.js"
+
+                data-model-name="group"
+            >
+    </script>
+
+
+
+
+<script type="text/javascript"
+        id="django-admin-prepopulated-fields-constants"
+        src="/static/admin/js/prepopulate_init.js"
+        data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form></div>
+
+
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+    <title>Add group | Django site admin</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+    <script type="text/javascript" src="/admin/jsi18n/"></script>
+    <script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+    <script type="text/javascript" src="/static/admin/js/core.js"></script>
+    <script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+    <script type="text/javascript" src="/static/admin/js/actions.js"></script>
+    <script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+    <script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+    <script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+    <script type="text/javascript" src="/static/admin/js/SelectBox.js"></script>
+    <script type="text/javascript" src="/static/admin/js/SelectFilter2.js"></script>
+<script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+
+
+    <meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-auth model-group change-form"
+      data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+            <h1 id="site-name"><a href="/alloy/">alloy</a></h1>
+
+        </div>
+
+        <div id="user-tools">
+            {% csrf_token %}
+            Welcome,
+            {% if request.session.username %}
+                <strong>{{ request.session.username }}.</strong>
+            {% else %}
+                <strong>Please login again.</strong>
+            {% endif %}
+            <a href="/password_change/">Change password</a> /
+
+            <a href="/logout/">Log out</a>
+
+        </div>
+
+
+    </div>
+    <!-- END Header -->
+    <div class="breadcrumbs">
+        <a href="/welcome/">Home</a>
+        &rsaquo;&rsaquo;&rsaquo; &rsaquo;<a href="/alloy/">alloy</a>
+        &rsaquo;&rsaquo;&rsaquo; <a href="headcast">Head Cast</a>
+        &rsaquo;&rsaquo;&rsaquo;<a href="tailcast">Tail Cast</a>
+         &rsaquo;&rsaquo;&rsaquo;<a href="clipmerge">Clip Merge</a>
+
+    </div>
+
+
+    <!-- Content -->
+    <div id="content" class="colM">
+
+        <h1>Head Cast</h1>
+        <div id="content-main">
+
+
+            <form action="" method="post" onsubmit="false" id="group_form" novalidate><input type="hidden" name="csrfmiddlewaretoken"
+                                                                            value="wUGX2OL5MEWH79fpU2VVgvGgmuXzvXYDyVTNb2Zl6fkSOkzuCUqFwJ5FTHduw6SK">
+                <div>
+                    {% csrf_token %}
+
+
+                    <fieldset class="module aligned ">
+
+
+                        <div class="form-row field-name">
+
+
+                            <div>
+
+
+                                <div class="app-auth module">
+                                    <table>
+                                        <caption>
+                                            <a href="//" class="section" title="Mn">seed:</a>
+                                        </caption>
+
+                                        <tr class="model-group">
+                                            <th scope="row" class="vTextField"><p name="pseedid" id="id_seedid">{{ seed.id }}</p><a href="//">{{ seed.text|safe }}</a>
+
+                                            </th>
+                                            <td>
+                                                <div class="submit-row">
+
+                                                    <input type="submit" value="Replace" class="default"
+                                                           name="_replace1" onclick="selectProject2()">
+                                                </div>
+                                            </td>
+                                            <th scope="row"><input type="text" name="seed1kw" class="vTextField"
+                                                                   maxlength="80" required id="id_seed1">
+                                                <div class="help">Please input three keywords for the seed.</div>
+                                            </th>
+
+                                            <td>
+                                                <div class="submit-row">
+
+                                                    <input type="submit" value="submit keywords" class="default"
+                                                           name="_smkws1"  onclick="selectProject()">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-row field-permissions">
+
+
+                            <div>
+
+
+                                <label for="id_permissions">Similar Entities:</label>
+
+                                <div class="related-widget-wrapper">
+                                    <select name="Records" id="id_permissions" multiple class="selectfilter"
+                                            data-field-name="Records" data-is-stacked="0">
+                                        {% for item in similar %}
+                                            <option value="{{ item.id }}"> {{ item.text|safe }}</option>
+                                        {% endfor %}
+                                    </select>
+
+
+                                </div>
+
+
+                                <div class="help">Hold down "Control", or "Command" on a Mac, to select more than one.
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+
+
+                    <div class="submit-row">
+
+                        <input type="submit" value="Save" class="default" name="submit">
+
+
+                        <input type="submit" value="Save and check another" name="submit">
+                        <input type="submit" value="Save and continue editing" name="submit">
+
+
+                    </div>
+
+
+                    <script type="text/javascript"
+                            id="django-admin-form-add-constants"
+                            src="/static/admin/js/change_form.js"
+
+                            data-model-name="group"
+                    >
+                    </script>
+
+
+                    <script type="text/javascript"
+                            id="django-admin-prepopulated-fields-constants"
+                            src="/static/admin/js/prepopulate_init.js"
+                            data-prepopulated-fields="[]">
+                    </script>
+
+
+                </div>
+            </form>
+        </div>
+
+    <script>
+    function selectProject() {
+        //$("#id_similar1").html("");       //清空下一级列表框。
+
+                $.ajaxSetup({
+                    data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
+                 });
+                $.ajax({
+                    //发起ajax请求
+                        data: {
+                    'seed1kw':$("#id_seed1").val(), //ok
+                            'seedid':$("#id_seedid").val(), //ok
+                },
+
+                    type:'post',
+                    url:'',
+                    data:JSON.stringify(data),
+                    tradition:true,
+                    //contentType:'application/json',
+                    success:function (data) {    //后端返回数据，是列表形式的
+                        alert('success');
+                        var dataObj = JSON.parse(data);
+                        $('#id_permissions').html(dataObj['valuestr']);
+
+                    }
+                });
+
+    }
+</script>
+
+
+      <script>
+    function selectProject2() {
+        $("#id_similar1").html("");       //清空下一级列表框。
+
+                $.ajaxSetup({
+                    data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
+                 });
+                $.ajax({
+                    //发起ajax请求
+                        data: {
+                    'seed1kw':$("#id_seed1").val(), //ok
+                },
+
+                    type:'post',
+                    url:'alloy',
+                    //data:JSON.stringify(data),
+                    tradition:true,
+                    //contentType:'application/json',
+                    success:function (data) {    //后端返回数据，是列表形式的
+                        {#alert('success');#}
+                        var dataObj = JSON.parse(data);
+                        $('#id_similar1').html(dataObj['valuestr']);
+
+                    }
+                });
+
+    }
+</script>
+
+
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>

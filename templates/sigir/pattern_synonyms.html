@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+
+<html lang="en-us" >
+<head>
+<title>Synonyms Recommenation | EXACT</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectBox.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectFilter2.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+    
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-auth model-group change-form"
+  data-admin-utc-offset="0" onload="aaa()" onunload="bbb()">
+
+<!-- Container -->
+<div id="container">
+
+    
+        <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+<h1 id="site-name"><a href="/dextra/">EXACT</a>-Entity eXtrACTion</h1>
+
+        </div>
+
+
+
+
+
+
+    </div>
+    <!-- END Header -->
+    
+
+
+    
+
+    
+        
+    
+
+    <!-- Content -->
+    <div id="content" class="colM">
+        
+        <h1> Pattern Exploration</h1>
+
+        <div class="module">
+
+        <form action="" method="post" id="user_form" novalidate><input type="hidden">
+             {% csrf_token %}
+<div>
+
+
+<h2><input type=hidden name="kkeys" value="{{ kkeys }}" >
+Are these substrings belong to the attribute values{{ kkeys }}</h2>
+
+
+
+
+  <fieldset class="module aligned wide">
+
+
+
+
+
+
+
+
+
+   <fieldset>
+{% for k,v in dict.items %}
+<h3>
+Are these substrings belong to the attribute value 【{{ k }}】</h3>
+   <div class="results">
+<table id="result_list">
+<thead>
+<tr>
+
+<td scope="col"  class="action-checkbox-column">
+
+   <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
+   <div class="clear"></div>
+</td>
+<td scope="col"  class="sortable column-is_staff">
+   <div class="text"><a href="?o=5.-2.-1">candidate synonyms</a></div>
+   <div class="clear"></div>
+</td>
+</tr>
+</thead>
+<tbody>
+
+{% for s in v %}
+
+<tr class="row1"><td class="action-checkbox"><input type="checkbox" name="{{ k }}" value="{{ s }}" class="action-select"></td><td>{{ s }}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+
+</div>
+{% endfor %}
+</fieldset>
+
+
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+ <div class="help">choose the synonyms that have the same semantics with the current attribute value</div>
+
+<div class="submit-row">
+
+<input type="submit" value="attribute create and bind" class="default" name="_save">&nbsp&nbsp&nbsp
+</div>
+
+
+
+
+
+
+
+
+</form>
+
+
+　　<script>
+
+
+function bbb(){
+    window.opener.location.reload(); //刷新父级页面
+}
+
+　function aaa(){
+
+　　　　　　//window.opener.document.getElementById("bbb").value="123123123";//向父页面传值
+
+　　　　　　//获取父级页面的的值
+
+　　　　　　//window.opener.a();   调用父级页面的方法
+        var editor = window.opener.document.getElementById("id__attribute_editor").value;
+        //document.write(editor);
+        document.getElementById("id_attrname").value = editor;
+　　　　　　　　　　　　//alert(window.opener.a().value);　　　
+
+　　　　}
+
+
+　　</script>
+
+
+
+
+    </div>
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>

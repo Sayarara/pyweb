@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="en-us" >
+<head>
+<title>Register</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=""
+  data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+<h1 id="site-name"><a href="/register/">DEXTRA</a></h1>
+
+        </div>
+
+
+        <div id="user-tools">
+
+                Welcome,
+                <strong>please</strong>
+
+             register / <a href="/accounts/login/">login</a>
+        </div>
+
+
+
+    </div>
+    <!-- END Header -->
+
+<div class="breadcrumbs">
+<a href="/index/">Home</a>
+&rsaquo; Register
+</div>
+
+
+
+
+
+
+
+    <!-- Content -->
+    <div id="content" class="colM">
+
+        <h1>Register</h1>
+        <div id="content-main">
+
+<form  method="post"><input type="hidden" name="csrfmiddlewaretoken" value="vLIp4wxRo926GP3GeAseQKbqWeCWNeNWaT05rlg0SGqm6F8VUkmJjgUCLzwhaCIO">
+<div>
+
+ {% csrf_token %}   <!--加入这行 -->
+
+<p>Please enter your username, password, and demographic information so we can recommend tasks for you.</p>
+
+<fieldset class="module aligned wide">
+
+<div class="form-row">
+
+    <label class="required" for="id_username">Username:</label> <input type="text" name="username" autofocus required id="id_username">
+</div>
+
+<div class="form-row">
+   <label class="required" for="id_password">Password:</label> <input type="password" name="password" required id="id_password">
+</div>
+
+        <div class="form-row">
+
+    <label class="required" for="id_domain">Domain:</label> <input type="text" name="domain" autofocus required id="id_domain">
+        <div class="help"><ul><li>Your domain means the domain you are studying/working in, such as Education, Finance, Computer and so on.</li></ul></div>
+</div>
+
+            <div class="form-row">
+
+    <label class="required" for="id_role">Role:</label> <input type="text" name="role" autofocus required id="id_role">
+        <div class="help"><ul><li>Your social role, such as Undergraduate,Postgraduate,PHD,Programmer,Accountant, Instructor and so on.</li></ul></div>
+</div>
+
+    <div class="form-row">
+
+    <label class="required" for="id_hobby">Hobby:</label> <input type="text" name="hobby" autofocus required id="id_hobby">
+        <div class="help"><ul><li>Your hobby can be none, music, movie,computer,photograph etc.</li></ul></div>
+</div>
+
+</fieldset>
+
+<div class="submit-row">
+    <input type="submit" value="Register" class="default">
+</div>
+
+</div>
+</form></div>
+
+
+
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>

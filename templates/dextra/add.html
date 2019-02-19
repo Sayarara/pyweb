@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+
+<html lang="en-us" >
+<head>
+<title>Add Attribute | DEXTRA</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectBox.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectFilter2.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+    
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-auth model-group change-form"
+  data-admin-utc-offset="0" onload="aaa()" onunload="bbb()">
+
+<!-- Container -->
+<div id="container">
+
+    
+        <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+<h1 id="site-name"><a href="/dextra/">DEXTRA</a></h1>
+
+        </div>
+
+
+                <div id="user-tools">
+             {% csrf_token %}
+                Welcome,
+            {% if request.session.username %}
+                <strong>{{ request.session.username }}.</strong>
+            {% else %}
+                <strong>Please login again.</strong>
+            {% endif %}
+                <a href="/password_change/">Change password</a> /
+
+                <a href="/logout/">Log out</a>
+
+        </div>
+
+
+
+    </div>
+    <!-- END Header -->
+    
+<div class="breadcrumbs">
+<a href="/welcome/">Home</a>
+&rsaquo;&rsaquo;&rsaquo; <a href="attrmanage">Attribute Management</a>
+    &rsaquo;&rsaquo;&rsaquo; <a href="exploration">Attribute Exploration</a>
+&rsaquo;&rsaquo;&rsaquo; <a href="clusterrefine">Cluster Refinement</a>
+    &rsaquo;&rsaquo;&rsaquo; <a href="/exploration">Cluster View</a>
+</div>
+
+    
+
+    
+        
+    
+
+    <!-- Content -->
+    <div id="content" class="colM">
+        
+        <h1>Add Attributes</h1>
+
+        <div class="module">
+        <h2>Add Attributes</h2>
+        <form action="" method="post" id="user_form" novalidate><input type="hidden">
+             {% csrf_token %}
+<div>
+
+
+
+
+
+
+
+  <fieldset class="module aligned wide">
+
+
+
+        <div class="form-row field-username">
+                <div>
+                        <label class="required" for="id_attrname"> &nbsp&nbspAttribute Name:</label>
+                            <input type="text" name="attrname" class="vTextField" maxlength="80" value="" autofocus required id="id_attrname">
+                        <div class="help">&nbsp&nbsp Letters, digits and _ only.</div>
+&nbsp&nbsp&nbsp&nbsp
+                </div>
+        </div>
+
+
+
+
+
+
+   <fieldset>
+
+       &nbsp&nbspScope:
+
+
+
+        <div class="form-row field-is_active">
+
+
+                <div class="checkbox-row">
+
+
+                        &nbsp&nbsp&nbsp&nbsp<input type="radio" name="is_local" value="local" id="id_is_local"checked="checked"><label class="vCheckboxLabel" for="id_is_local">Local</label>
+                        &nbsp&nbsp&nbsp&nbsp<input type="radio" name="is_local" value="globe" id="id_is_globe"><label class="vCheckboxLabel" for="id_is_globe">Globe</label>
+
+
+<div class="help">&nbsp&nbspWhether the attribute can work in globe.</div>
+
+                </div>
+
+        </div>
+
+
+</fieldset>
+
+
+
+
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="submit-row">
+
+<input type="submit" value="Add Attribute" class="default" name="_save">&nbsp&nbsp&nbsp
+</div>
+
+
+
+
+
+
+
+
+</form>
+
+
+　　<script>
+
+
+function bbb(){
+    window.opener.location.reload(); //刷新父级页面
+}
+
+　function aaa(){
+
+　　　　　　//window.opener.document.getElementById("bbb").value="123123123";//向父页面传值
+
+　　　　　　//获取父级页面的的值
+
+　　　　　　//window.opener.a();   调用父级页面的方法
+        var editor = window.opener.document.getElementById("id__attribute_editor").value;
+        //document.write(editor);
+        document.getElementById("id_attrname").value = editor;
+　　　　　　　　　　　　//alert(window.opener.a().value);　　　
+
+　　　　}
+
+
+　　</script>
+
+
+
+
+    </div>
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>

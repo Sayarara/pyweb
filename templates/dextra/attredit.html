@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+
+<html lang="en-us" >
+<head>
+<title>attribute edit | DEXTRA</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectBox.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectFilter2.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-auth model-group change-form"
+  data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name"><a href="/dextra/">DEXTRA</a></h1>
+
+        </div>
+        
+        
+                <div id="user-tools">
+             {% csrf_token %}
+                Welcome,
+            {% if request.session.username %}
+                <strong>{{ request.session.username }}.</strong>
+            {% else %}
+                <strong>Please login again.</strong>
+            {% endif %}
+                <a href="/password_change/">Change password</a> /
+
+                <a href="/logout/">Log out</a>
+
+        </div>
+        
+        
+        
+    </div>
+    <!-- END Header -->
+    
+<div class="breadcrumbs">
+<a href="/welcome/">Home</a>
+&rsaquo; <a href="/dextra/">Dextra</a>
+&rsaquo; <a href="/dextra/attrEdit/">Attribute Edit</a>
+&rsaquo; Content & Attribute Exploration
+</div>
+
+    
+
+    
+        
+    
+
+    <!-- Content -->
+    <div id="content" class="colM">
+        
+        <h1>Content & Attribute Exploration</h1>
+        <div id="content-main">
+
+
+<!-- form -->
+<form action="" method="post" id="group_form" novalidate><input type="hidden" name="csrfmiddlewaretoken" value="ZVdDY4iPuOJyGrbZaIOMBOpoUd5BrFzGe3LcYHRzHzt57iCUQnMyclfWQbsbT03n">
+<div>
+
+
+
+
+
+
+
+  <fieldset class="module aligned ">
+
+
+        <div class="form-row field-permissions">
+
+
+                <div>
+
+
+
+
+                            <div class="related-widget-wrapper">
+    <select name="contents" id="id_contents" multiple class="selectfilter" data-field-name="contents" data-is-stacked="0">
+  <option value="1">admin | log entry | Can add log entry</option>
+
+  <option value="2">admin | log entry | Can change log entry</option>
+
+  <option value="3">admin | log entry | Can delete log entry</option>
+
+  <option value="4">admin | log entry | Can view log entry</option>
+
+  <option value="9">auth | group | Can add group</option>
+
+  <option value="10">auth | group | Can change group</option>
+
+  <option value="11">auth | group | Can delete group</option>
+
+  <option value="12">auth | group | Can view group</option>
+
+  <option value="5">auth | permission | Can add permission</option>
+
+  <option value="6">auth | permission | Can change permission</option>
+
+  <option value="7">auth | permission | Can delete permission</option>
+
+  <option value="8">auth | permission | Can view permission</option>
+
+  <option value="13">auth | user | Can add user</option>
+
+  <option value="14">auth | user | Can change user</option>
+
+  <option value="15">auth | user | Can delete user</option>
+
+  <option value="16">auth | user | Can view user</option>
+
+  <option value="17">contenttypes | content type | Can add content type</option>
+
+  <option value="18">contenttypes | content type | Can change content type</option>
+
+  <option value="19">contenttypes | content type | Can delete content type</option>
+
+  <option value="20">contenttypes | content type | Can view content type</option>
+
+  <option value="25">login | user info | Can add user info</option>
+
+  <option value="26">login | user info | Can change user info</option>
+
+  <option value="27">login | user info | Can delete user info</option>
+
+  <option value="28">login | user info | Can view user info</option>
+
+  <option value="29">register | worker info | Can add worker info</option>
+
+  <option value="30">register | worker info | Can change worker info</option>
+
+  <option value="31">register | worker info | Can delete worker info</option>
+
+  <option value="32">register | worker info | Can view worker info</option>
+
+  <option value="21">sessions | session | Can add session</option>
+
+  <option value="22">sessions | session | Can change session</option>
+
+  <option value="23">sessions | session | Can delete session</option>
+
+  <option value="24">sessions | session | Can view session</option>
+
+</select>
+
+
+
+</div>
+
+
+
+                        <div class="help">Hold down "Control", or "Command" on a Mac, to select more than one.</div>
+
+                </div>
+
+        </div>
+
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="submit-row">
+
+<input type="submit" value="Save" class="default" name="_save">
+
+
+<input type="submit" value="Save and add another" name="_addanother">
+<input type="submit" value="Save and continue editing" name="_continue">
+
+
+</div>
+
+
+
+    <script type="text/javascript"
+            id="django-admin-form-add-constants"
+            src="/static/admin/js/change_form.js"
+
+                data-model-name="group"
+            >
+    </script>
+
+
+
+
+<script type="text/javascript"
+        id="django-admin-prepopulated-fields-constants"
+        src="/static/admin/js/prepopulate_init.js"
+        data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form>
+ <!-- endform -->
+
+<!-- form -->
+<form action="" method="post" id="group_form" novalidate><input type="hidden" name="csrfmiddlewaretoken" value="ZVdDY4iPuOJyGrbZaIOMBOpoUd5BrFzGe3LcYHRzHzt57iCUQnMyclfWQbsbT03n">
+<div>
+
+
+
+
+
+
+
+  <fieldset class="module aligned ">
+        <div class="form-row field-permissions">
+
+
+                <div>
+
+
+
+
+                            <div class="related-widget-wrapper">
+    <select name="attributes" id="id_attributes" multiple class="selectfilter" data-field-name="attributes" data-is-stacked="0">
+  <option value="1">admin | log entry | Can add log entry</option>
+
+  <option value="2">admin | log entry | Can change log entry</option>
+
+  <option value="3">admin | log entry | Can delete log entry</option>
+
+  <option value="4">admin | log entry | Can view log entry</option>
+
+  <option value="9">auth | group | Can add group</option>
+
+  <option value="10">auth | group | Can change group</option>
+
+  <option value="11">auth | group | Can delete group</option>
+
+  <option value="12">auth | group | Can view group</option>
+
+  <option value="5">auth | permission | Can add permission</option>
+
+  <option value="6">auth | permission | Can change permission</option>
+
+  <option value="7">auth | permission | Can delete permission</option>
+
+  <option value="8">auth | permission | Can view permission</option>
+
+  <option value="13">auth | user | Can add user</option>
+
+  <option value="14">auth | user | Can change user</option>
+
+  <option value="15">auth | user | Can delete user</option>
+
+  <option value="16">auth | user | Can view user</option>
+
+  <option value="17">contenttypes | content type | Can add content type</option>
+
+  <option value="18">contenttypes | content type | Can change content type</option>
+
+  <option value="19">contenttypes | content type | Can delete content type</option>
+
+  <option value="20">contenttypes | content type | Can view content type</option>
+
+  <option value="25">login | user info | Can add user info</option>
+
+  <option value="26">login | user info | Can change user info</option>
+
+  <option value="27">login | user info | Can delete user info</option>
+
+  <option value="28">login | user info | Can view user info</option>
+
+  <option value="29">register | worker info | Can add worker info</option>
+
+  <option value="30">register | worker info | Can change worker info</option>
+
+  <option value="31">register | worker info | Can delete worker info</option>
+
+  <option value="32">register | worker info | Can view worker info</option>
+
+  <option value="21">sessions | session | Can add session</option>
+
+  <option value="22">sessions | session | Can change session</option>
+
+  <option value="23">sessions | session | Can delete session</option>
+
+  <option value="24">sessions | session | Can view session</option>
+
+</select>
+
+
+
+</div>
+
+
+
+                        <div class="help">Hold down "Control", or "Command" on a Mac, to select more than one.</div>
+
+                </div>
+
+        </div>
+
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="submit-row">
+
+<input type="submit" value="Save" class="default" name="_save">
+
+
+<input type="submit" value="Save and add another" name="_addanother">
+<input type="submit" value="Save and continue editing" name="_continue">
+
+
+</div>
+
+
+
+    <script type="text/javascript"
+            id="django-admin-form-add-constants"
+            src="/static/admin/js/change_form.js"
+
+                data-model-name="group"
+            >
+    </script>
+
+
+
+
+<script type="text/javascript"
+        id="django-admin-prepopulated-fields-constants"
+        src="/static/admin/js/prepopulate_init.js"
+        data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form>
+ <!-- endform -->
+
+
+
+        </div>
+
+        
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>

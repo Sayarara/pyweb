@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+    <!--  <h1 style="background-color: antiquewhite;color: black">Hello World!</h1>-->
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+     <h1>用户输入：</h1>
+    <form action="/index/" method="post">
+         {% csrf_token %}   <!--加入这行 -->
+        用户名：<input type="text" name="username" /><br />
+        密码：<input type="password" name="password" /><br />
+        <input type="submit" value="提交" />
+    </form>
+
+     <h1>用户展示：</h1>
+        <table border="1">
+            <thead>
+                <tr>用户名</tr>
+                <tr>密码</tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td>{{ item.user }}</td>
+                    <td>{{ item.pwd }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <fieldset class="module aligned ">
+    <h2>Permissions</h2>
+
+
+        <div class="form-row field-is_active">
+
+
+                <div class="checkbox-row">
+
+
+                        <input type="radio" name="is_active" id="id_is_active" checked><label class="vCheckboxLabel" for="id_is_active">Active</label>
+
+
+                        <div class="help">Designates whether this user should be treated as active. Unselect this instead of deleting accounts.</div>
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-is_staff">
+
+
+                <div class="checkbox-row">
+
+
+                        <input type="radio" name="is_staff" id="id_is_staff"><label class="vCheckboxLabel" for="id_is_staff">Staff status</label>
+
+
+                        <div class="help">Designates whether the user can log into this admin site.</div>
+
+                </div>
+
+        </div>
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

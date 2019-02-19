@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+
+<html lang="en-us" >
+<head>
+<title>Siblings Recommenation | EXACT</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectBox.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectFilter2.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+    
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-auth model-group change-form"
+  data-admin-utc-offset="0" onload="aaa()" onunload="bbb()">
+
+<!-- Container -->
+<div id="container">
+
+    
+        <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+<h1 id="site-name"><a href="/dextra/">EXACT</a>-Entity eXtrACTion</h1>
+
+        </div>
+
+
+
+
+
+    </div>
+    <!-- END Header -->
+    
+
+
+    
+
+    
+        
+    
+
+    <!-- Content -->
+    <div id="content" class="colM">
+        
+        <h1> Pattern Exploration</h1>
+
+        <div class="module">
+
+        <form action="" method="post" id="user_form" novalidate><input type="hidden">
+             {% csrf_token %}
+<div>
+
+
+<h2><input type=hidden name="attrname" value="{{ attrname }}" >
+Are these substrings belong to the attribute: {{ attrname }}</h2>
+
+
+
+
+  <fieldset class="module aligned wide">
+
+
+
+
+
+
+
+
+
+   <fieldset>
+
+
+   <div class="results">
+<table id="result_list">
+<thead>
+<tr>
+
+<th scope="col"  class="action-checkbox-column">
+
+   <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
+   <div class="clear"></div>
+</th>
+<th scope="col"  class="sortable column-is_staff">
+   <div class="text"><a href="?o=5.-2.-1">candidate sibling</a></div>
+   <div class="clear"></div>
+</th>
+</tr>
+</thead>
+<tbody>
+
+
+{% for k in matches %}
+<tr class="row1"><td class="action-checkbox"><input type="checkbox" name="_selected_siblings" value="{{ k }}" class="action-select"></td><th>{{ k }}</th></tr>
+{% endfor %}
+
+</tbody>
+
+</table>
+</div>
+
+</fieldset>
+
+
+
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="help">choose the items that belong to the attribute's value space</div>
+
+<div class="submit-row">
+
+<input type="submit" value="bind values to attribute" class="default" name="_save">&nbsp&nbsp&nbsp
+</div>
+</form>
+
+
+　　<script>
+
+
+function bbb(){
+    window.opener.location.reload(); //刷新父级页面
+}
+
+　function aaa(){
+
+　　　　　　//window.opener.document.getElementById("bbb").value="123123123";//向父页面传值
+
+　　　　　　//获取父级页面的的值
+
+　　　　　　//window.opener.a();   调用父级页面的方法
+        var editor = window.opener.document.getElementById("id__attribute_editor").value;
+        //document.write(editor);
+        document.getElementById("id_attrname").value = editor;
+　　　　　　　　　　　　//alert(window.opener.a().value);　　　
+
+　　　　}
+
+
+　　</script>
+
+
+
+
+    </div>
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>

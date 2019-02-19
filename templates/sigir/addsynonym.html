@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+
+<html lang="en-us" >
+<head>
+<title>Bind Synonyms | EXACT</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectBox.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectFilter2.js"></script>
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-auth model-group change-form" onload="aaa()" onunload="bbb()"
+  data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+
+        <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+<h1 id="site-name"><a href="/dextra/">DEXTRA</a></h1>
+
+        </div>
+
+
+
+
+
+
+    </div>
+    <!-- END Header -->
+
+
+
+
+
+
+
+
+    <!-- Content -->
+    <div id="content" class="colM">
+
+        <h1>Bind Synonyms to a specific value</h1>
+
+        <div class="module">
+        <h2>Expert Bind Operation</h2>
+        <form action="" method="post" id="user_form" novalidate><input type="hidden">
+             {% csrf_token %}
+<div>
+
+
+
+
+
+
+
+  <fieldset class="module aligned wide">
+      <div class="form-row field-username">
+                          <div>
+                        <label class="required" for="id_attrname"> Select Attribute:</label>
+ <select name="attrname" id="id_attrname" data-field-name="contents" data-is-stacked="0" onchange="selectProject()">
+     {% for item in data %}
+  <option value="{{ item.id }}"> {{ item.attrname }}</option>
+ {% endfor %}
+</select>
+                </div>
+</div>
+      <div class="form-row field-username">
+                          <div>
+                        <label class="required" for="id_attrvalue"> Select Attribute Value:</label>
+ <select name="seleval" id="id_attrvalue" data-field-name="contents" data-is-stacked="0" >
+     {% for item in data %}
+  <option value="{{ item.id }}"> {{ item.attrname }}</option>
+ {% endfor %}
+</select>
+                </div>
+</div>
+
+  <script>
+    function selectProject() {
+        var projectName;
+        var project = document.getElementById("id_attrname");
+        $("#id_attrvalue").html("");       //每次重新选择当前列表框，就清空下一级列表框。
+         projectName = project.text; //none
+
+                $.ajaxSetup({
+                    data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
+                 });
+                $.ajax({
+                    //发起ajax请求
+                        data: {
+                    'attribute':projectName, //none
+                    'test':$("#id_attrname").val(), //ok
+                    "test2":project.value, //ok
+                    'test3':$("#id_synonym").val(),
+                },
+
+                    type:'post',
+                    url:'addsynonym',
+                    //data:JSON.stringify(data),
+                    tradition:true,
+                    //contentType:'application/json',
+                    success:function (data) {    //后端返回数据，是列表形式的
+                        {#alert('success');#}
+                        var dataObj = JSON.parse(data);
+                        $('#id_attrvalue').html(dataObj['valuestr']);
+
+                    }
+                });
+
+    }
+</script>
+
+
+
+
+
+
+
+              <div class="form-row field-username">
+                <div>
+                        <label class="required" for="id_synonym"> Synonym Value:</label>
+                            <input type="text" name="attrsynonym" class="vTextField" maxlength="80" value="" autofocus required id="id_synonym">
+                        <div class="help">Letters, digits and _ only.</div>
+                </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="submit-row">
+
+<input type="submit" value="Bind Synonyms" class="default" name="_save">&nbsp&nbsp&nbsp
+</div>
+
+
+
+
+
+
+
+
+</form>
+
+
+
+
+
+
+
+    </div>
+        <br class="clear">
+    </div>
+
+　　<script>
+
+
+function bbb(){
+    window.opener.location.reload(); //刷新父级页面
+}
+
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　function aaa(){
+
+　　　　　　//window.opener.document.getElementById("bbb").value="123123123";//向父页面传值
+
+　　　　　　//获取父级页面的的值
+
+　　　　　　//window.opener.a();   调用父级页面的方法
+        var editor = window.opener.document.getElementById("id__attribute_editor").value;
+        //document.write(editor);
+        document.getElementById("id_attrvalue").value = editor;
+        document.getElementById("id_synonym").value = editor;
+
+　　　　　　　　　　　　//alert(window.opener.a().value);
+
+　　　　　　
+
+　　　　}
+
+
+　　</script>
+
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>

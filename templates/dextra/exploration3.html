@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+
+<html lang="en-us" >
+<head>
+<title> Exploration | DEXTRA</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+  <link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css">
+    <script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-auth model-user change-list"
+  data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+
+        <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+<h1 id="site-name"><a href="/dextra/">DEXTRA</a></h1>
+
+        </div>
+
+
+                <div id="user-tools">
+             {% csrf_token %}
+                Welcome,
+            {% if request.session.username %}
+                <strong>{{ request.session.username }}.</strong>
+            {% else %}
+                <strong>Please login again.</strong>
+            {% endif %}
+                <a href="/password_change/">Change password</a> /
+
+                <a href="/logout/">Log out</a>
+
+        </div>
+
+
+
+    </div>
+    <!-- END Header -->
+
+<div class="breadcrumbs">
+<a href="/welcome/">Home</a>
+&rsaquo;&rsaquo;&rsaquo; <a href="attrmanage">Attribute Management</a>
+    &rsaquo;&rsaquo;&rsaquo; <a href="exploration">Attribute Exploration</a>
+&rsaquo;&rsaquo;&rsaquo; <a href="/exploration">Cluster Refinement</a>
+    &rsaquo;&rsaquo;&rsaquo; <a href="/exploration">Cluster View</a>
+</div>
+
+
+
+
+
+
+
+    <!-- Content -->
+    <div id="content" class="flex">
+
+        <h1>The Content Exploration</h1>
+
+  <div id="content-main">
+
+        <ul class="object-tools">
+
+
+
+
+
+  <li>
+
+    <a href="attrmanage" class="addlink">
+      Add Attribute
+    </a>
+  </li>
+
+
+
+
+        </ul>
+
+
+    <div class="module filtered" id="changelist">
+
+
+<div id="toolbar"><form id="changelist-search">
+<div><!-- DIV needed for valid HTML -->
+<label for="searchbar"><img src="/static/admin/img/search.svg" alt="Search"></label>
+<input type="text" size="40" name="q" value="" id="searchbar" autofocus>
+<input type="submit" value="Search" id="searchresult">
+
+</div>
+</form></div>
+
+    <script>
+    $("#searchresult").click(function () {
+        $.ajaxSetup({
+            data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
+        });
+        $.ajax({
+            url:"exploration",
+            type:'POST',
+            tradition:true,
+            data:{
+                "searchkey":$("#searchbar").val(),
+                "page":$("#page").val(),
+            },
+            error:function (data) {
+            alert('request failed');
+            },
+            success:function (data) {
+                var str1 = "";
+                 $('#tbody').empty(); //清空tbody内容
+                        // 生成新的table数据元素并添加到table中
+                for (var i = 0; i < data.length; i++) {
+                    str1 = "<tr class=\"row1\"><td class=\"action-checkbox\"><input type=\"checkbox\" name=\"_selected_action\" value=\"1\" class=\"action-select\"></td>"+"<td>"+data.data[i].id+"<td>"+"<td>"+data.data[i].text +"</td>"+"</tr>";
+                        $('#tbody').append(str1)
+                         }
+            }
+        })
+    })
+</script>
+
+
+
+
+
+
+
+          <div id="changelist-filter">
+            <h2>Pattern Exploration</h2>
+
+<h3> similar with in proceedings of the twenty-fifth annual acm symposium on the theory of computing </h3>
+<ul>
+
+    <li class="selected">
+    <a href="?o=-2.-1" title="All">All</a></li>
+
+    <li>
+    <a href="?is_staff__exact=1&amp;o=-2.-1" title="Yes">Yes</a></li>
+
+    <li>
+    <a href="?is_staff__exact=0&amp;o=-2.-1" title="No">No</a></li>
+
+</ul>
+
+<h3> By superuser status </h3>
+<ul>
+
+    <li class="selected">
+    <a href="?o=-2.-1" title="All">All</a></li>
+
+    <li>
+    <a href="?is_superuser__exact=1&amp;o=-2.-1" title="Yes">Yes</a></li>
+
+    <li>
+    <a href="?is_superuser__exact=0&amp;o=-2.-1" title="No">No</a></li>
+
+</ul>
+
+              <h2>Attribute Exploration</h2>
+
+<ul>
+
+    <li class="selected">
+    <a href="?o=-2.-1" title="All">All</a></li>
+
+    <li>
+    <a href="?is_active__exact=1&amp;o=-2.-1" title="Yes">Yes</a></li>
+
+    <li>
+    <a href="?is_active__exact=0&amp;o=-2.-1" title="No">No</a></li>
+
+</ul>
+
+               <h2>Recent Operations</h2>
+
+<ul>
+
+    <li class="selected">
+    aa</li>
+
+    <li>
+    bbb</li>
+
+    <li>
+    cc</li>
+
+</ul>
+
+          </div>
+
+        <form id="changelist-form" method="post" novalidate><input type="hidden" name="csrfmiddlewaretoken" value="CTsvsnHtYSzMVPGjPnG0mFh0D7IFqnN5y6MWjozRaQe7MbjbOgVMo6yJGsBn0JvX">
+
+
+
+
+<div class="actions">
+
+
+    <label>Gold/Trash: <select name="action" required>
+  <option value="gold" selected>Gold</option>
+
+  <option value="delete_selected">Trash</option>
+
+</select></label><input type="hidden" name="select_across" value="0" class="select-across">
+
+
+    <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button>
+
+
+
+        <span class="action-counter" data-actions-icnt="7">0 of 7 selected</span>
+
+
+
+
+</div>
+
+
+
+
+<div class="results">
+<table id="result_list">
+<thead>
+<tr>
+
+<th scope="col"  class="action-checkbox-column">
+
+   <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
+   <div class="clear"></div>
+</th>
+<th scope="col"  class="sortable column-username sorted descending">
+   <div class="text"><a href="?o=1.-2">ID</a></div>
+   <div class="clear"></div>
+</th>
+<th scope="col"  class="sortable column-is_staff">
+   <div class="text"><a href="?o=5.-2.-1">text</a></div>
+   <div class="clear"></div>
+</th>
+</tr>
+</thead>
+<tbody>
+{% csrf_token %}
+
+{% for d in data %}
+<tr class="row1"><td class="action-checkbox"><input type="checkbox" name="_selected_action" value="1" class="action-select"></td><th class="field-username">{{ d.id }}</th><td class="field-is_staff">{{ d.text }}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+
+<div class="paginator">
+    <span class="step-links">
+        {% if data.has_previous %}
+            <a href="?page={{ data.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ data.number }} of {{ data.paginator.num_pages }}.
+        </span>
+
+        {% if data.has_next %}
+            <a href="?page={{ data.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+
+100 records have  no attributes
+</div>
+
+
+ <div id="content-main">
+
+
+     <div class="submit-row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+     </div>
+
+
+
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+        <br class="clear">
+    </div>
+
+
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>

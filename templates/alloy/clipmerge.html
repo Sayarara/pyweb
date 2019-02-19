@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+
+<html lang="en-us" >
+<head>
+<title>Welcome | DEXTRA test system</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/dashboard.css">
+
+<style type="text/css">
+    .summaryText {
+color: cadetblue;
+}
+    .detailtext {
+        color: darkgrey;
+    }
+    </style>
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" dashboard"
+  data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name"><a href="/welcome/">Welcome</a></h1>
+
+        </div>
+        
+        
+        <div id="user-tools">
+             {% csrf_token %}
+                Welcome,
+            {% if request.session.username %}
+                <strong>{{ request.session.username }}.</strong>
+            {% else %}
+                <strong>Please login again.</strong>
+            {% endif %}
+                <a href="/password_change/">Change password</a> /
+                
+                <a href="/logout/">Log out</a>
+            
+        </div>
+        
+        
+        
+    </div>
+    <!-- END Header -->
+
+    <div class="breadcrumbs">
+        <a href="/welcome/">Home</a>
+        &rsaquo;&rsaquo;&rsaquo; &rsaquo;<a href="/alloy/">alloy</a>
+        &rsaquo;&rsaquo;&rsaquo; <a href="headcast">Head Cast</a>
+        &rsaquo;&rsaquo;&rsaquo;<a href="tailcast">Tail Cast</a>
+         &rsaquo;&rsaquo;&rsaquo;<a href="clipmerge">Clip Merge</a>
+
+    </div>
+    
+    
+
+    
+        
+    
+
+    <!-- Content -->
+    <div id="content" class="colMS">
+
+        
+        <h1 class="section">Are these two clips the same？</h1>
+
+<div id="content-main">
+
+
+
+
+        <div class="app-auth module">
+            <form method="post">
+                {% csrf_token %}
+
+        <table>
+            <thead>
+</thead>
+
+
+            <tbody>
+            <tr  class="row2">
+                <th scope="row">
+                    <details>
+                        <summary><span class="summaryText">aaaaaaaaa</span></summary>
+                        <ul>
+                            <li><p class = "detailtext">1993</p></li>
+                            <li>bbbb</li>
+                            <li>bbbb</li>
+                        </ul>
+                    </details>
+
+
+
+
+                </th>
+            </tr>
+
+
+            <tr  class="row2">
+                 <details>
+                     <summary>aaaaaaaaa</summary>
+                        <ul>
+                            <li>bbbb</li>
+                            <li>bbbb</li>
+                            <li>bbbb</li>
+                        </ul>
+                    </details>
+
+            </tr>
+        </tbody>
+        </table>
+                <div class="form-row field-is_active">
+
+
+                <div class="checkbox-row">
+                    <p> </p>
+                    <input type="hidden" name="clipclusterid1" value={{clipclusterid1}}>
+                    <input type="hidden" name="clipclusterid2" value={{clipclusterid2}}>
+
+
+                        &nbsp&nbsp&nbsp&nbsp<input type="radio" name="is_same" value="1" id="id_is_local"checked="checked"><label class="vCheckboxLabel" for="id_is_local">Merge</label>
+                        &nbsp&nbsp&nbsp&nbsp<input type="radio" name="is_same" value="0" id="id_is_globe"><label class="vCheckboxLabel" for="id_is_globe">Not Merge</label>
+
+
+<div class="help">&nbsp&nbspPlease select....</div>
+
+                </div>
+
+
+        </div>
+                <div class="submit-row">
+
+<input type="submit" value="Next Pair"  class="default" name="_save">
+</div>
+                </form>
+        </div>
+
+    
+
+</div>
+
+        
+
+
+
+
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>
