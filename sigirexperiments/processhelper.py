@@ -163,6 +163,8 @@ def datasetfilteringMultiContitiion(dataset,substring):
 def viewhelper(substring,attrbute_name,value):
     return '<span class = "detailtext">' + substring + '<span class="deli">|</span><span class="summaryText">' + attrbute_name + '.' + value + '</span></span>'
 
+def viewhelperSummary(attrname,value):
+    return '<details><summary><span class="summaryText">'+attrname+'</span></summary><p class = "detailtext">'+value+'</p></details>'
 
 
 def getNumofCommonSubstr(str1, str2):
@@ -360,3 +362,14 @@ def getAttributeProgress(userid,user):
             a = '0'+a
         attributeprogress[attribute.attrname] = a
     return  attributeprogress
+
+def getDatasetProgress(entitydict):
+    total = Cora_labeled.objects.all().count()
+    processed = []
+    for records in entitydict.values():
+        processed.extend(records)
+    lenth = len(set(processed))
+    a = format(100 * float(lenth) / float(total), '.2f')
+    if len(a) == 4:
+        a = '0' + a
+    return a
