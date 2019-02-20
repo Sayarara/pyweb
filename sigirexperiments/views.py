@@ -38,6 +38,8 @@ pattern_siblingDisplayNum = 3
 content_DisplayNum = 10
 attrBufferPoolSize = 15
 recordBufferPoolSize = 200
+entity_view_threshold = 2
+
 expriment_result_path = 'expriment_result.json'
 otherInfo = 'hbf'
 clustering_result_path = 'expriment_clsuterresult.json'
@@ -261,7 +263,30 @@ def testa(username):
 # Create your views here.
 
 def entityview(request):
-    return render(request,'sigir/entityview.html')
+    username = request.session['username']
+    # f = open('_'.join([username, str(entity_view_threshold),'entityview.json']), encoding='utf-8')
+    # entitydict = json.load(f)
+    f = open('_'.join([username, str(entity_view_threshold),'entityview.json']), "r")  # 设置文件对象
+    strr = f.read()  # 将txt文件的所有内容读入到字符串str中
+    f.close()  # 将文件关闭
+    entitydict = eval(strr)
+    dict = {}
+    for k,v in entitydict.items():
+        print(k)
+        if v:
+            print(v)
+        else:
+            print('NULL')
+
+        # kstr = []
+        # for i in range(entity_view_threshold):
+        #     aa = processhelper.viewhelperSummary(attrname=k[0][i],value=k[1][i])
+        #     kstr.append(aa)
+        coras = Cora.objects.filter(id__in=v)
+        # dict[' '.join(kstr)] = coras
+        dict[k] = coras
+        
+    return render(request,'sigir/entityview.html',{'entities':dict,'entity_view_threshold':entity_view_threshold})
 
 
 def exploration(request):
@@ -399,8 +424,17 @@ def exploration(request):
                 a = sorted(dict.items())[0]
                 stadvalname =a[0]
                 valsyns = a[1]
-        entityprogress = '08.33'
-        # attributeprogress = {'year':60,'pages':50,'period':80}
+
+        # dataset process progress
+        ahbf = hbf.construct_value_level_HBFfordataset(data[0])
+        entitydict = hbf.entityView(ahbf=ahbf,entity_view_threshold=entity_view_threshold)
+        entityprogress = processhelper.getDatasetProgress(entitydict=entitydict)
+        # fw = open('_'.join([username, str(entity_view_threshold),'entityview.json']), 'w', encoding='utf-8')
+        # json.dump(entitydict, fw, ensure_ascii=False, indent=4)
+        f = open('_'.join([username, str(entity_view_threshold),'entityview.json']), 'w')
+        f.write(str(entitydict))
+        f.close()
+        # attribute process progress
         attributeprogress = processhelper.getAttributeProgress(userid=data[0],user=username)
         print(attributeprogress)
         return render(request, 'sigir/exploration.html', {'epg':entityprogress,'ap':attributeprogress,'ap2':attributeprogress,'data': cora, 'searchkey': searchkey,'matches':matches,'attrname':attrname,'syns':valsyns,'standvalue':stadvalname,
@@ -502,19 +536,23 @@ def pattern_siblings(request):
         seedtemp = models.patternSeedTemp.objects.get(user=username)
         seedtemp.seedsubstring = seedsstr
         seedtemp.save()
+        msg = []
         for substring in multis:
             val = models.sigirCoraAttrValue(attr_id=attr.id, value=substring.replace(' ','_'), userid=data[0])
             val.save()
-            corasyno = models.sigirCoraValueSynonym(value=val, synonym=substring, userid=data[0])
-            corasyno.save()
-            llist = processhelper.datasetfilteringMultiContitiion(dataset=dataset,substring=substring)
-            restr = processhelper.viewhelper(substring=substring,attrbute_name=attrbute_name,value=val.value)
-            for entiy in llist:
-                entiy.labeledtext = entiy.labeledtext.replace(substring, restr)
-                entiy.save()
-                models.sigirCoraToAttrEntity.objects.create(cora_id=entiy.id, attrsynonym=corasyno, user=username)
-        models.sigirAttrExploration.objects.filter(substring__in=multis,user=username).update(is_labelled=True)
-        msg = {"attrname": attrbute_name, 'selectedvalues': multis}
+            a = processhelper.updateUVDcontent(dataset=dataset, attra=val.attr, valueid=val.id, attrsynonym=substring,
+                                               userid=data[0], username=username)
+            msg.append(a)
+        #     corasyno = models.sigirCoraValueSynonym(value=val, synonym=substring, userid=data[0])
+        #     corasyno.save()
+        #     llist = processhelper.datasetfilteringMultiContitiion(dataset=dataset,substring=substring)
+        #     restr = processhelper.viewhelper(substring=substring,attrbute_name=attrbute_name,value=val.value)
+        #     for entiy in llist:
+        #         entiy.labeledtext = entiy.labeledtext.replace(substring, restr)
+        #         entiy.save()
+        #         models.sigirCoraToAttrEntity.objects.create(cora_id=entiy.id, attrsynonym=corasyno, user=username)
+        # models.sigirAttrExploration.objects.filter(substring__in=multis,user=username).update(is_labelled=True)
+        # msg = {"attrname": attrbute_name, 'selectedvalues': multis}
         models.dextraitems.objects.create(task=taskc, msg=json.dumps(msg),
                                           optype=dxaconstants.WorkerOperation.valueBind, user=data[0],
                                           samplingMethod=samplemth)
