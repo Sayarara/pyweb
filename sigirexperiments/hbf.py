@@ -1016,6 +1016,59 @@ def collectSubrecordsSimple(node,dataset,username):
     return subrecords
 
 
+def construct_value_level_HBFfordataset(userid):
+    ahbf = hbf()
+    attras = models.sigirCoraAttr.objects.filter(userid=userid)
+    for attra in attras:
+        ahbf[attra.attrname]
+        vals = models.sigirCoraAttrValue.objects.filter(attr_id=attra.id)
+        for val in vals:
+            syns = models.sigirCoraValueSynonym.objects.filter(value=val)
+            records = []
+            for syn in syns:
+                entitys = models.sigirCoraToAttrEntity.objects.filter(attrsynonym_id=syn.id)
+                records.extend([entity.cora_id for entity in entitys])
+            ahbf[attra.attrname][val.value] = set(records)
+    return ahbf
+
+from itertools import combinations,product
+def entityView(ahbf,entity_view_threshold):
+    # entity_view_threshold >= 2
+    attributes = ahbf.keys()  # attribute names
+    # if len(attributes) < 2:
+    #     return None
+    print(attributes)
+    entitydict = {}
+    for c in combinations(attributes,entity_view_threshold):
+        print(c)
+        # print([list(ahbf[cc].keys()) for cc in c])
+        for item in product(*[list(ahbf[cc].keys()) for cc in c]):
+            print(item)
+            ss = set(ahbf[c[0]][item[0]])
+            for idx in range(1,len(item)):
+                ss = ss.intersection(set(ahbf[c[idx]][item[idx]]))
+                if not ss:
+                    break
+            if len(ss) > 0:
+                entitydict[(c,item)] = list(ss)
+
+    return entitydict
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
